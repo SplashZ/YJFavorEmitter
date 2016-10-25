@@ -16,6 +16,8 @@ YJFavorEmitter 是一个非常好用的点赞粒子发射器。
 一个类方法即可轻松完成初始化
 
 ```objc
+
+
 /**
  初始化粒子发射器
 
@@ -30,6 +32,9 @@ YJFavorEmitter 是一个非常好用的点赞粒子发射器。
                       parentView:(UIView *)parentView
                            image:(UIImage *)image
                   highlightImage:(UIImage *)hightlightImage;
+```
+
+```objc
 
 /**
  释放元素
@@ -37,6 +42,11 @@ YJFavorEmitter 是一个非常好用的点赞粒子发射器。
  @param count 元素数量
  */
 - (void)generateEmitterCellsForCellsCount:(int)count;
+```
+
+```objc
+
+_emitter.cellImages = @[[UIImage imageNamed:@"heart"], [UIImage imageNamed:@"face"]];
 ```
 
 完整例子请参照 demo
