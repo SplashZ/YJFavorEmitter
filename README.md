@@ -1,5 +1,9 @@
 YJFavorEmitter
 ==================
+[![CocoaPods](http://img.shields.io/cocoapods/v/YJFavorEmitter.svg?style=flat)](http://cocoapods.org/?q= YJFavorEmitter)&nbsp;
+[![CocoaPods](http://img.shields.io/cocoapods/p/YJFavorEmitter.svg?style=flat)](http://cocoapods.org/?q= YJFavorEmitter)&nbsp;
+[![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)&nbsp;
+![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 
 YJFavorEmitter 是一个非常好用的点赞粒子发射器。
 
