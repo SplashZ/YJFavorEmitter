@@ -35,9 +35,12 @@
     _counterLabel.textAlignment = NSTextAlignmentCenter;
     [container addSubview:_counterLabel];
     self.counter = 0;
-    
-    _emitter = [YJFavorEmitter emitterWithFrame:CGRectMake(0, 0, 44, 44) parentView:self.view image:[UIImage imageNamed:@"heart.png"] highlightImage:nil];
-    _emitter.extraShift = 20;
+    _emitter = [YJFavorEmitter emitterWithFrame:CGRectMake(0, 0, 44, 44)
+                               favorDisplayView:self.view
+                                          image:[UIImage imageNamed:@"heart.png"]
+                                 highlightImage:nil];
+    _emitter.extraShift = 10;
+    _emitter.risingY = 100;
     _emitter.cellImages = @[[UIImage imageNamed:@"heart"], [UIImage imageNamed:@"face"]];
     [container addSubview:_emitter];
     __weak typeof(self) weakSelf = self;

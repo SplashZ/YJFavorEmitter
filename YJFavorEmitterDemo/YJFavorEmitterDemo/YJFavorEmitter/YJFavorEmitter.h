@@ -34,6 +34,9 @@ typedef BOOL (^EmitterTapHandler) (void);
 ///元素左右移动的追加范围为10~20之间的数，默认为10
 @property (nonatomic, assign) CGFloat extraShift;
 
+///在 favorDisplayView 中能上升到的y轴坐标值,默认为0
+@property (nonatomic, assign) CGFloat risingY;
+
 ///元素上升的最小速度为5~15之间的数，默认为5
 @property (nonatomic, assign) CGFloat risingVelocity;
 
@@ -55,15 +58,15 @@ typedef BOOL (^EmitterTapHandler) (void);
 /**
  初始化粒子发射器
 
- @param frame           粒子发射器在parentView中的frame
- @param parentView      父容器
+ @param frame           粒子发射器在 superview 中的 frame
+ @param favorDisplayView     展示 cell 的图层
  @param image           粒子发射器的图片
  @param hightlightImage 粒子发射器的高亮图片
 
  @return 粒子发射器
  */
 + (instancetype)emitterWithFrame:(CGRect)frame
-                      parentView:(UIView *)parentView
+                      favorDisplayView:(UIView *)favorDisplayView
                            image:(UIImage *)image
                   highlightImage:(UIImage *)hightlightImage;
 

@@ -12,8 +12,9 @@
 #define kSwayExtraOffset 10.f
 
 @interface YJFavorEmitter ()
-@property (nonatomic, weak) UIView *parentView;
+@property (nonatomic, weak) UIView *favorDisplayView;
 @property (nonatomic, weak) UIButton *btn;
+@property (nonatomic, assign) BOOL updateRisingY;
 @end
 
 @implementation YJFavorEmitter
@@ -21,13 +22,13 @@
 #pragma mark - init
 
 + (instancetype)emitterWithFrame:(CGRect)frame
-                      parentView:(UIView *)parentView
+                favorDisplayView:(UIView *)favorDisplayView
                            image:(UIImage *)image
                   highlightImage:(UIImage *)hightlightImage
 {
     CGRect validFrame = (CGRect){frame.origin, (CGSize){MIN(100, frame.size.width), MIN(100, frame.size.height)}};
     YJFavorEmitter *emitter = [[YJFavorEmitter alloc] initWithFrame:validFrame];
-    emitter.parentView = parentView;
+    emitter.favorDisplayView = favorDisplayView;
     [emitter assignDefaultValue];
     [emitter assignSubviews];
     [emitter setAppearanceWithImage:image highlightedImage:hightlightImage];
@@ -40,6 +41,7 @@
     
     _originRange = 1;
     _scale = 1;
+    _risingY = 0;
     _extraShift = 10;
     _shiftCycle = 5;
     _risingDuration = 10;
@@ -67,24 +69,30 @@
 
 - (void)generateEmitterCell
 {
-    if (_cellImages.count < 1 || !_parentView) {
+    if (_cellImages.count < 1 || !_favorDisplayView) {
         return;
     }
     int randomIndex = arc4random_uniform((int)_cellImages.count);
+
+    CGRect frame = [self.superview convertRect:self.frame toView:_favorDisplayView];
     
-    CGRect frame = [self.superview convertRect:self.frame toView:_parentView];
+    if (_updateRisingY) {
+        _risingY = MAX(MIN(_risingY, frame.origin.y - frame.size.height * _scale * 0.5 * _originRange), 0);
+        _updateRisingY = NO;
+    }
+    
     YJFavorEmitterCell *cell = [YJFavorEmitterCell emitterCellWithFrame:CGRectMake(0,
                                                                                    frame.origin.y - frame.size.height * _scale * 0.5 * _originRange,
                                                                                    frame.size.width * _scale,
                                                                                    frame.size.height * _scale)
                                                               floatArea:CGRectMake(CGRectGetMidX(frame) - CGRectGetWidth(frame) * 0.5 - _extraShift,
-                                                                                   _parentView.frame.origin.y,
+                                                                                   _risingY,
                                                                                    frame.size.width + 2 * _extraShift,
-                                                                                   _parentView.frame.size.height - frame.size.height)
+                                                                                   _favorDisplayView.frame.size.height - frame.size.height)
                                                                    image:_cellImages[randomIndex]];
                                 
     cell.position = CGPointMake(CGRectGetMidX(frame), cell.position.y);
-    [_parentView.layer addSublayer:cell];
+    [_favorDisplayView.layer addSublayer:cell];
     
     [self assignForEmitterCell:cell];
     
@@ -123,7 +131,7 @@
 
 - (void)setScale:(CGFloat)scale
 {
-    _scale = MIN(MAX(scale, 1.5), 0.2);
+    _scale = MAX(MIN(scale, 1.5), 0.2);
 }
 
 - (void)setInteractEnabled:(BOOL)interactEnabled
@@ -138,42 +146,50 @@
 
 - (void)setExtraShift:(CGFloat)extraShift
 {
-    _extraShift = MIN(MAX(extraShift, 20), 10);
+    _extraShift = MAX(MIN(extraShift, 20), 10);
+}
+
+- (void)setRisingY:(CGFloat)risingY
+{
+    if (_risingY != risingY) {
+        _risingY = risingY;
+        _updateRisingY = YES;
+    }
 }
 
 - (void)setRisingVelocity:(CGFloat)risingVelocity
 {
-    _risingVelocity = MIN(MAX(risingVelocity, 15), 5);
+    _risingVelocity = MAX(MIN(risingVelocity, 15), 5);
 }
 
 - (void)setShiftCycle:(CGFloat)shiftCycle
 {
-    _shiftCycle = MIN(MAX(shiftCycle, 8), 1);
+    _shiftCycle = MAX(MIN(shiftCycle, 8), 1);
 }
 
 - (void)setRisingDuration:(CGFloat)risingDuration
 {
-    _risingDuration = MIN(MAX(risingDuration, 12), 5);
+    _risingDuration = MAX(MIN(risingDuration, 12), 5);
 }
 
 - (void)setRisingShiftDuration:(CGFloat)risingShiftDuration
 {
-    _risingShiftDuration = MIN(MAX(risingShiftDuration, 4), 1);
+    _risingShiftDuration = MAX(MIN(risingShiftDuration, 4), 1);
 }
 
 - (void)setFadeOutDuration:(CGFloat)fadeOutDuration
 {
-    _fadeOutDuration = MIN(MAX(fadeOutDuration, 10), 3);
+    _fadeOutDuration = MAX(MIN(fadeOutDuration, 10), 3);
 }
 
 - (void)setFadeOutShiftDuration:(CGFloat)fadeOutShiftDuration
 {
-    _fadeOutShiftDuration = MIN(MAX(fadeOutShiftDuration, 3), 1);
+    _fadeOutShiftDuration = MAX(MIN(fadeOutShiftDuration, 3), 1);
 }
 
 - (void)setOriginRange:(CGFloat)originRange
 {
-    _originRange = MIN(MAX(originRange, 1), 0);
+    _originRange = MAX(MIN(originRange, 1), 0);
 }
 
 @end
