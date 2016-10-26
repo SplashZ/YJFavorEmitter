@@ -3,9 +3,10 @@ YJFavorEmitter
 [![CocoaPods](http://img.shields.io/cocoapods/v/YJFavorEmitter.svg?style=flat)](http://cocoapods.org/?q= YJFavorEmitter)&nbsp;
 [![CocoaPods](http://img.shields.io/cocoapods/p/YJFavorEmitter.svg?style=flat)](http://cocoapods.org/?q= YJFavorEmitter)&nbsp;
 [![Support](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)](https://img.shields.io/badge/support-iOS%206%2B%20-blue.svg?style=flat)&nbsp;
+[![Travis-CI](https://travis-ci.org/SplashZ/YJFavorEmitter.svg?branch=master)](https://travis-ci.org/SplashZ/YJFavorEmitter)&nbsp;
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 
-![image](https://github.com/SplashZ/YJFavorEmitter/blob/master/demo.gif)
+![demogif](https://github.com/SplashZ/YJFavorEmitter/blob/master/demo.gif)
 <br>
 
 English
@@ -105,8 +106,6 @@ _emitter.cellImages = @[[UIImage imageNamed:@"heart"], [UIImage imageNamed:@"fac
 ```
 
 更多精彩请看 demo
-
-![image](https://github.com/SplashZ/YJFavorEmitter/blob/master/demo.gif)
 
 配置
 ==================

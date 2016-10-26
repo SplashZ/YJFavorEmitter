@@ -25,14 +25,14 @@
 		E25904CA1DBF0FB200DED9ED /* POPSpringAnimation.mm in Sources */ = {isa = PBXBuildFile; fileRef = E25904B11DBF0FB200DED9ED /* POPSpringAnimation.mm */; };
 		E25904CB1DBF0FB200DED9ED /* POPVector.mm in Sources */ = {isa = PBXBuildFile; fileRef = E25904B51DBF0FB200DED9ED /* POPVector.mm */; };
 		E25904CC1DBF0FB200DED9ED /* TransformationMatrix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E25904B81DBF0FB200DED9ED /* TransformationMatrix.cpp */; };
+		E28C1F611DC0A29E0076369B /* YJFavorEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = E28C1F5E1DC0A29E0076369B /* YJFavorEmitter.m */; };
+		E28C1F621DC0A29E0076369B /* YJFavorEmitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E28C1F601DC0A29E0076369B /* YJFavorEmitterCell.m */; };
 		E2DE5B8E1DBE102E001ABD2A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE5B8D1DBE102E001ABD2A /* main.m */; };
 		E2DE5B911DBE102E001ABD2A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE5B901DBE102E001ABD2A /* AppDelegate.m */; };
 		E2DE5B941DBE102E001ABD2A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE5B931DBE102E001ABD2A /* ViewController.m */; };
 		E2DE5B971DBE102E001ABD2A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DE5B951DBE102E001ABD2A /* Main.storyboard */; };
 		E2DE5B991DBE102E001ABD2A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE5B981DBE102E001ABD2A /* Assets.xcassets */; };
 		E2DE5B9C1DBE102E001ABD2A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E2DE5B9A1DBE102E001ABD2A /* LaunchScreen.storyboard */; };
-		E2DE5BA81DBE1071001ABD2A /* YJFavorEmitter.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE5BA51DBE1071001ABD2A /* YJFavorEmitter.m */; };
-		E2DE5BA91DBE1071001ABD2A /* YJFavorEmitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E2DE5BA71DBE1071001ABD2A /* YJFavorEmitterCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,6 +87,10 @@
 		E25904B81DBF0FB200DED9ED /* TransformationMatrix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TransformationMatrix.cpp; sourceTree = "<group>"; };
 		E25904B91DBF0FB200DED9ED /* TransformationMatrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TransformationMatrix.h; sourceTree = "<group>"; };
 		E25904BA1DBF0FB200DED9ED /* UnitBezier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitBezier.h; sourceTree = "<group>"; };
+		E28C1F5D1DC0A29E0076369B /* YJFavorEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJFavorEmitter.h; sourceTree = "<group>"; };
+		E28C1F5E1DC0A29E0076369B /* YJFavorEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJFavorEmitter.m; sourceTree = "<group>"; };
+		E28C1F5F1DC0A29E0076369B /* YJFavorEmitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJFavorEmitterCell.h; sourceTree = "<group>"; };
+		E28C1F601DC0A29E0076369B /* YJFavorEmitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJFavorEmitterCell.m; sourceTree = "<group>"; };
 		E2DE5B891DBE102E001ABD2A /* YJFavorEmitterDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YJFavorEmitterDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DE5B8D1DBE102E001ABD2A /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E2DE5B8F1DBE102E001ABD2A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -97,10 +101,6 @@
 		E2DE5B981DBE102E001ABD2A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2DE5B9B1DBE102E001ABD2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E2DE5B9D1DBE102E001ABD2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E2DE5BA41DBE1071001ABD2A /* YJFavorEmitter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJFavorEmitter.h; sourceTree = "<group>"; };
-		E2DE5BA51DBE1071001ABD2A /* YJFavorEmitter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJFavorEmitter.m; sourceTree = "<group>"; };
-		E2DE5BA61DBE1071001ABD2A /* YJFavorEmitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YJFavorEmitterCell.h; sourceTree = "<group>"; };
-		E2DE5BA71DBE1071001ABD2A /* YJFavorEmitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YJFavorEmitterCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +180,17 @@
 			path = WebCore;
 			sourceTree = "<group>";
 		};
+		E28C1F5C1DC0A29E0076369B /* YJFavorEmitter */ = {
+			isa = PBXGroup;
+			children = (
+				E28C1F5D1DC0A29E0076369B /* YJFavorEmitter.h */,
+				E28C1F5E1DC0A29E0076369B /* YJFavorEmitter.m */,
+				E28C1F5F1DC0A29E0076369B /* YJFavorEmitterCell.h */,
+				E28C1F601DC0A29E0076369B /* YJFavorEmitterCell.m */,
+			);
+			path = YJFavorEmitter;
+			sourceTree = SOURCE_ROOT;
+		};
 		E2DE5B801DBE102E001ABD2A = {
 			isa = PBXGroup;
 			children = (
@@ -199,8 +210,8 @@
 		E2DE5B8B1DBE102E001ABD2A /* YJFavorEmitterDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E28C1F5C1DC0A29E0076369B /* YJFavorEmitter */,
 				E25904861DBF0FB200DED9ED /* pop */,
-				E2DE5BA31DBE1070001ABD2A /* YJFavorEmitter */,
 				E2DE5B8F1DBE102E001ABD2A /* AppDelegate.h */,
 				E2DE5B901DBE102E001ABD2A /* AppDelegate.m */,
 				E2DE5B921DBE102E001ABD2A /* ViewController.h */,
@@ -220,17 +231,6 @@
 				E2DE5B8D1DBE102E001ABD2A /* main.m */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E2DE5BA31DBE1070001ABD2A /* YJFavorEmitter */ = {
-			isa = PBXGroup;
-			children = (
-				E2DE5BA41DBE1071001ABD2A /* YJFavorEmitter.h */,
-				E2DE5BA51DBE1071001ABD2A /* YJFavorEmitter.m */,
-				E2DE5BA61DBE1071001ABD2A /* YJFavorEmitterCell.h */,
-				E2DE5BA71DBE1071001ABD2A /* YJFavorEmitterCell.m */,
-			);
-			path = YJFavorEmitter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,8 +312,8 @@
 				E25904C31DBF0FB200DED9ED /* POPCGUtils.mm in Sources */,
 				E25904CC1DBF0FB200DED9ED /* TransformationMatrix.cpp in Sources */,
 				E25904C61DBF0FB200DED9ED /* POPGeometry.mm in Sources */,
+				E28C1F621DC0A29E0076369B /* YJFavorEmitterCell.m in Sources */,
 				E2DE5B911DBE102E001ABD2A /* AppDelegate.m in Sources */,
-				E2DE5BA81DBE1071001ABD2A /* YJFavorEmitter.m in Sources */,
 				E25904C81DBF0FB200DED9ED /* POPMath.mm in Sources */,
 				E25904BF1DBF0FB200DED9ED /* POPAnimationRuntime.mm in Sources */,
 				E25904BD1DBF0FB200DED9ED /* POPAnimationEvent.mm in Sources */,
@@ -321,13 +321,13 @@
 				E25904BC1DBF0FB200DED9ED /* POPAnimation.mm in Sources */,
 				E25904C91DBF0FB200DED9ED /* POPPropertyAnimation.mm in Sources */,
 				E2DE5B8E1DBE102E001ABD2A /* main.m in Sources */,
-				E2DE5BA91DBE1071001ABD2A /* YJFavorEmitterCell.m in Sources */,
 				E25904C21DBF0FB200DED9ED /* POPBasicAnimation.mm in Sources */,
 				E25904C71DBF0FB200DED9ED /* POPLayerExtras.mm in Sources */,
 				E25904C51DBF0FB200DED9ED /* POPDecayAnimation.mm in Sources */,
 				E25904C11DBF0FB200DED9ED /* POPAnimator.mm in Sources */,
 				E25904CB1DBF0FB200DED9ED /* POPVector.mm in Sources */,
 				E25904C41DBF0FB200DED9ED /* POPCustomAnimation.mm in Sources */,
+				E28C1F611DC0A29E0076369B /* YJFavorEmitter.m in Sources */,
 				E25904CA1DBF0FB200DED9ED /* POPSpringAnimation.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -445,10 +445,13 @@
 		E2DE5BA11DBE102E001ABD2A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = H9EMJ6BDSU;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = YJFavorEmitterDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = splazhz.YJFavorEmitterDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -457,10 +460,13 @@
 		E2DE5BA21DBE102E001ABD2A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = H9EMJ6BDSU;
+				HEADER_SEARCH_PATHS = "";
 				INFOPLIST_FILE = YJFavorEmitterDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = splazhz.YJFavorEmitterDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
