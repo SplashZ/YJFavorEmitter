@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.platform     = :ios, '6.0'
   s.name         = 'YJFavorEmitter'
-  s.version      = '1.0.1'
+  s.version      = '1.0.2'
   s.summary      = 'A nice favar emitter'
   s.homepage     = 'https://github.com/SplashZ/YJFavorEmitter'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
