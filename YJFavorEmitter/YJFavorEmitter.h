@@ -20,6 +20,9 @@ typedef BOOL (^EmitterTapHandler) (void);
 ///是否响应点击事件，默认为YES
 @property (nonatomic, assign) BOOL interactEnabled;
 
+///出生点位是否跟随发射器移动，默认为NO，不跟随；
+@property (nonatomic, assign) BOOL movable;
+
 #pragma mark - cell property
 
 ///元素图片

@@ -14,7 +14,11 @@
 @interface YJFavorEmitter ()
 @property (nonatomic, weak) UIView *favorDisplayView;
 @property (nonatomic, weak) UIButton *btn;
-@property (nonatomic, assign) BOOL updateRisingY;
+@property (nonatomic, assign) BOOL risingYUpdate;
+
+@property (nonatomic, assign) CGRect cellFrames;
+@property (nonatomic, assign) CGRect floatArea;
+
 @end
 
 @implementation YJFavorEmitter
@@ -38,6 +42,10 @@
 - (void)assignDefaultValue
 {
     _interactEnabled = YES;
+    _movable = NO;
+    
+    _cellFrames = CGRectZero;
+    _floatArea = CGRectZero;
     
     _originRange = 1;
     _scale = 1;
@@ -73,25 +81,28 @@
         return;
     }
     int randomIndex = arc4random_uniform((int)_cellImages.count);
-
-    CGRect frame = [self.superview convertRect:self.frame toView:_favorDisplayView];
     
-    if (_updateRisingY) {
-        _risingY = MAX(MIN(_risingY, frame.origin.y - frame.size.height * _scale * 0.5 * _originRange), 0);
-        _updateRisingY = NO;
+    if (_risingYUpdate) {
+        CGRect frame = [self.superview convertRect:self.frame toView:_favorDisplayView];
+        [self updateFloatAreaWithFrame:frame];
+        _risingYUpdate = NO;
     }
     
-    YJFavorEmitterCell *cell = [YJFavorEmitterCell emitterCellWithFrame:CGRectMake(0,
-                                                                                   frame.origin.y - frame.size.height * _scale * 0.5 * _originRange,
-                                                                                   frame.size.width * _scale,
-                                                                                   frame.size.height * _scale)
-                                                              floatArea:CGRectMake(CGRectGetMidX(frame) - CGRectGetWidth(frame) * 0.5 - _extraShift,
-                                                                                   _risingY,
-                                                                                   frame.size.width + 2 * _extraShift,
-                                                                                   _favorDisplayView.frame.size.height - frame.size.height)
+    if (_movable) {
+        _cellFrames = CGRectZero;
+        _floatArea = CGRectZero;
+    }
+    
+    if (CGRectEqualToRect(_cellFrames, CGRectZero)) {
+        CGRect frame = [self.superview convertRect:self.frame toView:_favorDisplayView];
+        [self updateCellFramesWithFrame:frame];
+        [self updateFloatAreaWithFrame:frame];
+    }
+    
+    YJFavorEmitterCell *cell = [YJFavorEmitterCell emitterCellWithFrame:_cellFrames
+                                                              floatArea:_floatArea
                                                                    image:_cellImages[randomIndex]];
-                                
-    cell.position = CGPointMake(CGRectGetMidX(frame), cell.position.y);
+    
     [_favorDisplayView.layer addSublayer:cell];
     
     [self assignForEmitterCell:cell];
@@ -127,6 +138,24 @@
     cell.fadeOutShiftDuration = _fadeOutShiftDuration;
 }
 
+#pragma mark - frame update
+
+- (void)updateCellFramesWithFrame:(CGRect)frame
+{
+    _cellFrames = CGRectMake(frame.origin.x,
+                             frame.origin.y - frame.size.height * _scale * 0.5 * _originRange,
+                             frame.size.width * _scale,
+                             frame.size.height * _scale);
+}
+
+- (void)updateFloatAreaWithFrame:(CGRect)frame
+{
+    _floatArea = CGRectMake(CGRectGetMidX(frame) - CGRectGetWidth(frame) * 0.5 - _extraShift,
+                            _risingY,
+                            frame.size.width + 2 * _extraShift,
+                            _favorDisplayView.frame.size.height - frame.size.height);
+}
+
 #pragma mark - setter
 
 - (void)setScale:(CGFloat)scale
@@ -144,6 +173,11 @@
     _btn.enabled = _interactEnabled;
 }
 
+- (void)setMovable:(BOOL)movable
+{
+    _movable = movable;
+}
+
 - (void)setExtraShift:(CGFloat)extraShift
 {
     _extraShift = MAX(MIN(extraShift, 20), 10);
@@ -153,7 +187,7 @@
 {
     if (_risingY != risingY) {
         _risingY = risingY;
-        _updateRisingY = YES;
+        _risingYUpdate = YES;
     }
 }
 

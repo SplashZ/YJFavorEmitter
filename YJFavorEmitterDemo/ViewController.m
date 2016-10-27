@@ -12,8 +12,11 @@
 
 @interface ViewController ()
 
+@property (nonatomic, strong) UIView *container;
 @property (nonatomic, strong) UILabel *counterLabel;
-@property (nonatomic, strong) UIButton *button;
+@property (weak, nonatomic) IBOutlet UIButton *autoBtn;
+@property (weak, nonatomic) IBOutlet UIButton *moveBtn;
+@property (nonatomic, strong) UIPanGestureRecognizer *panGesture;
 @property (nonatomic, strong) YJFavorEmitter *emitter;
 
 @property (nonatomic, assign) NSInteger counter;
@@ -29,12 +32,18 @@
 
     _counter = -1;
     
-    UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 64)];
+    _container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 44, 64)];
+    _container.center = self.view.center;
+    _panGesture = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(pan:)];
+    _panGesture.enabled = NO;
+    [_container addGestureRecognizer:_panGesture];
+    [self.view addSubview:_container];
     
     _counterLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 44, 44, 20)];
     _counterLabel.textAlignment = NSTextAlignmentCenter;
-    [container addSubview:_counterLabel];
+    [_container addSubview:_counterLabel];
     self.counter = 0;
+    
     _emitter = [YJFavorEmitter emitterWithFrame:CGRectMake(0, 0, 44, 44)
                                favorDisplayView:self.view
                                           image:[UIImage imageNamed:@"heart.png"]
@@ -42,23 +51,12 @@
     _emitter.extraShift = 10;
     _emitter.risingY = 100;
     _emitter.cellImages = @[[UIImage imageNamed:@"heart"], [UIImage imageNamed:@"face"]];
-    [container addSubview:_emitter];
     __weak typeof(self) weakSelf = self;
     _emitter.tapHandler = ^ BOOL {
         weakSelf.counter += 1;
         return NO;
     };
-    
-    [self.view addSubview:container];
-    container.center = self.view.center;
-
-    _button = [[UIButton alloc] initWithFrame:CGRectMake(self.view.frame.size.width * 0.5 - 22, self.view.frame.size.height - 64, 44, 44)];
-    [_button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [_button setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
-    [_button setTitle:@"开始" forState:UIControlStateNormal];
-    [_button setTitle:@"暂停" forState:UIControlStateSelected];
-    [_button addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_button];
+    [_container addSubview:_emitter];
 }
 
 - (void)setCounter:(NSInteger)counter
@@ -82,12 +80,22 @@
     [self pop_removeAllAnimations];
 }
 
-- (void)btnClick:(UIButton *)btn
-{
+- (IBAction)autoBtnClicked:(UIButton *)btn {
     if (!btn.isSelected) {
         [self startAnimation];
     } else {
         [self stopAnimation];
+    }
+    btn.selected = !btn.isSelected;
+}
+
+- (IBAction)moveBtnClicked:(UIButton *)btn {
+    if (!btn.isSelected) {
+        _emitter.movable = YES;
+        _panGesture.enabled = YES;
+    } else {
+        _emitter.movable = NO;
+        _panGesture.enabled = NO;
     }
     btn.selected = !btn.isSelected;
 }
@@ -98,7 +106,7 @@
         _countAnimation = [POPBasicAnimation animation];
         _countAnimation.fromValue = @(0);
         _countAnimation.toValue   = @(100);
-        _countAnimation.duration  = 5;
+        _countAnimation.duration  = 10;
         _countAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         __weak typeof(self) weakSelf = self;
         _countAnimation.property = [POPMutableAnimatableProperty propertyWithName:@"varCount" initializer:^(POPMutableAnimatableProperty *prop) {
@@ -108,10 +116,24 @@
         }];
         
         _countAnimation.animationDidReachToValueBlock = ^ (POPAnimation *anim) {
-            weakSelf.button.selected = NO;
+            weakSelf.autoBtn.selected = NO;
         };
     }
     return _countAnimation;
+}
+
+- (void)pan:(UIPanGestureRecognizer *)gesture
+{
+    CGPoint translate = [gesture translationInView:self.view];
+    UIGestureRecognizerState state = gesture.state;
+    switch (state) {
+        case UIGestureRecognizerStateChanged:
+            _container.transform = CGAffineTransformTranslate(_container.transform, translate.x, translate.y);
+            break;
+        default:
+            break;
+    }
+    [gesture setTranslation:CGPointZero inView:self.view];
 }
 
 @end
