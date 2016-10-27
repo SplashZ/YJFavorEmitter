@@ -6,7 +6,8 @@ YJFavorEmitter
 [![Travis-CI](https://travis-ci.org/SplashZ/YJFavorEmitter.svg?branch=master)](https://travis-ci.org/SplashZ/YJFavorEmitter)&nbsp;
 ![License MIT](https://img.shields.io/badge/license-MIT-green.svg?style=flat)
 
-![demogif](https://github.com/SplashZ/YJFavorEmitter/blob/master/demo.gif)
+![demogif](https://github.com/SplashZ/YJFavorEmitter/blob/master/demo1.gif)
+![demogif](https://github.com/SplashZ/YJFavorEmitter/blob/master/demo2.gif)
 <br>
 
 English
