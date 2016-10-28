@@ -20,9 +20,6 @@ typedef BOOL (^EmitterTapHandler) (void);
 ///是否响应点击事件，默认为YES
 @property (nonatomic, assign) BOOL interactEnabled;
 
-///出生点位是否跟随发射器移动，默认为NO，不跟随；
-@property (nonatomic, assign) BOOL movable;
-
 #pragma mark - cell property
 
 ///元素图片
@@ -40,8 +37,8 @@ typedef BOOL (^EmitterTapHandler) (void);
 ///在 favorDisplayView 中能上升到的y轴坐标值,默认为0
 @property (nonatomic, assign) CGFloat risingY;
 
-///元素上升的最小速度为5~15之间的数，默认为5
-@property (nonatomic, assign) CGFloat risingVelocity;
+///元素上升的最小速度为20~50之间的数，默认为30
+@property (nonatomic, assign) CGFloat minRisingVelocity;
 
 ///左右飘动的周期
 @property (nonatomic, assign) CGFloat shiftCycle;

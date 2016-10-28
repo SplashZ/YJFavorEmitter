@@ -22,8 +22,7 @@
 
 @implementation YJFavorEmitterCell
 
-//上升的最小速度
-static CGFloat minRisingVelocity = 30.0f;
+static const float inflatingDuration = 0.5;
 
 + (instancetype)emitterCellWithFrame:(CGRect)frame
                            floatArea:(CGRect)floatArea
@@ -53,7 +52,7 @@ static CGFloat minRisingVelocity = 30.0f;
 - (void)groupAnimationForInflatingAndShifting
 {
     double beginTime = CACurrentMediaTime();
-    [self inflatingWithBeginTime:beginTime duration:0.5];
+    [self inflatingWithBeginTime:beginTime duration:inflatingDuration];
     
     CGFloat risingDuration;
     CGFloat fadeOutDuration;
@@ -61,10 +60,11 @@ static CGFloat minRisingVelocity = 30.0f;
                           fadeOutDuration:&fadeOutDuration];
     
     [self animationForRisingWithDuration:risingDuration];
-    [self fadeoutWithBeginTime:beginTime + 0.5
+    
+    [self fadeoutWithBeginTime:beginTime + inflatingDuration
                       duration:fadeOutDuration];
     
-    [self animationForShiftingWithBeginTime:beginTime + 0.5 duration:_shiftCycle
+    [self animationForShiftingWithBeginTime:beginTime + inflatingDuration duration:_shiftCycle
                                     offset:[self randomOfShift:CGRectGetWidth(_floatArea) * 0.5]];
 }
 
@@ -142,12 +142,12 @@ static CGFloat minRisingVelocity = 30.0f;
 //result = center +/- gap
 - (float)randomOfCenterNumber:(float)center forShift:(float)shift
 {
-    return center - shift + (float)arc4random_uniform(shift * 10 * 2 + 1) / 10;
+    return center - shift + arc4random_uniform(shift * 2 + 1);
 }
 
 - (float)randomOfShift:(float)shift
 {
-    return (float)arc4random_uniform(shift * 10 + 1) / 10;
+    return (float)arc4random_uniform(shift + 1);
 }
 
 - (void)adaptDurationWithRisingDuration:(CGFloat *)risingDuration
@@ -158,15 +158,14 @@ static CGFloat minRisingVelocity = 30.0f;
     CGFloat randRisingDuration = [self randomOfCenterNumber:_risingDuration
                                                forShift:_risingShiftDuration];
     
-    if (risingDistance / randRisingDuration < minRisingVelocity) {
-        *risingDuration = risingDistance / minRisingVelocity;
+    if (risingDistance / randRisingDuration < _minRisingVelocity) {
+        *risingDuration = risingDistance / _minRisingVelocity;
         //确保元素到达顶端时完全消失
-        CGFloat fadeDuration = _fadeOutDuration > *risingDuration ? *risingDuration : _fadeOutDuration;
-        fadeDuration = [self randomOfCenterNumber:fadeDuration forShift:_fadeOutShiftDuration];
-        *fadeOutDuration = fadeDuration > *risingDuration ? *risingDuration : fadeDuration;
+        CGFloat fadeDuration = _fadeOutDuration > *risingDuration - _fadeOutShiftDuration - inflatingDuration ? *risingDuration - _fadeOutShiftDuration - inflatingDuration: _fadeOutDuration;
+        *fadeOutDuration = [self randomOfCenterNumber:fadeDuration forShift:_fadeOutShiftDuration];
     } else {
         *risingDuration = randRisingDuration;
-        CGFloat fadeDuration = _fadeOutDuration > *risingDuration ? *risingDuration - _fadeOutShiftDuration : _fadeOutDuration;
+        CGFloat fadeDuration = _fadeOutDuration > *risingDuration - _fadeOutShiftDuration - inflatingDuration ? *risingDuration - _fadeOutShiftDuration - inflatingDuration: _fadeOutDuration;
         *fadeOutDuration = [self randomOfCenterNumber:fadeDuration forShift:_fadeOutShiftDuration];
     }
 }

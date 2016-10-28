@@ -50,6 +50,7 @@
                                  highlightImage:nil];
     _emitter.extraShift = 10;
     _emitter.risingY = 100;
+    _emitter.minRisingVelocity = 100;
     _emitter.cellImages = @[[UIImage imageNamed:@"heart"], [UIImage imageNamed:@"face"]];
     __weak typeof(self) weakSelf = self;
     _emitter.tapHandler = ^ BOOL {
@@ -91,10 +92,8 @@
 
 - (IBAction)moveBtnClicked:(UIButton *)btn {
     if (!btn.isSelected) {
-        _emitter.movable = YES;
         _panGesture.enabled = YES;
     } else {
-        _emitter.movable = NO;
         _panGesture.enabled = NO;
     }
     btn.selected = !btn.isSelected;

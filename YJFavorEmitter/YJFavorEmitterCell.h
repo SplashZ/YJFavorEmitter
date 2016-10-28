@@ -14,6 +14,8 @@
 @property (nonatomic, assign) CGFloat shiftCycle;
 ///到达顶部的时间
 @property (nonatomic, assign) CGFloat risingDuration;
+///元素上升的最小速度
+@property (nonatomic, assign) CGFloat minRisingVelocity;
 ///到达顶部的时间差量
 @property (nonatomic, assign) CGFloat risingShiftDuration;
 ///完全消失的时间
