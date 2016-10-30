@@ -50,7 +50,7 @@
                                  highlightImage:nil];
     _emitter.extraShift = 10;
     _emitter.risingY = 100;
-    _emitter.minRisingVelocity = 100;
+    _emitter.minRisingVelocity = 25;
     _emitter.cellImages = @[[UIImage imageNamed:@"heart"], [UIImage imageNamed:@"face"]];
     __weak typeof(self) weakSelf = self;
     _emitter.tapHandler = ^ BOOL {
