@@ -121,6 +121,7 @@
 {
     if (!_tapHandler) {
         [self generateEmitterCell];
+        return;
     }
     
     BOOL generation = _tapHandler();
